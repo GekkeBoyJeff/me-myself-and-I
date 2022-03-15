@@ -3,7 +3,7 @@
     margin:0px;
     padding:0px;
     list-style-type: none;
-    color:var(--text-color)
+    color:var(--text-color);
 }
 
 :root{
@@ -18,41 +18,98 @@
     --section-margin:10px;
 }
 
+img{
+    width:100%;
+}
+
 body{
     background-color:var(--background-color);
+    display:flex;
 }
 
 header{
     padding:calc(var(--section-padding)*2);
+    display: none;
+}
+
+main {
+  display: flex;
+  justify-content: center;
 }
 
 section{
     padding:var(--section-padding);
     margin:var(--section-margin);
     background: var(--section-background-color);
+    display: none;
 }
 
 section ul {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  width: 100%;
+}
+
+section ul li p {
+  margin-bottom: 20px;
 }
 
 section ul li{
     background-color:rgb(43, 41, 83);
-    margin: 10px;
-    flex: 1 1 130px;
-    border-radius: 5px;
-    height: 100px;
+    flex: 1 1 100%;
+    flex-wrap: wrap;
 }
 
-section[title="onderwerpen selecteren"]{
+/* section[title="onderwerpen selecteren"]{
     background-color:var(--background-color);
     padding:0px;
+} */
+
+section[title="Introductie ondernemen"]{
+    display:flex;
+    background-color:var(--background-color);
+
+    width: 100%;
+    max-width: 800px;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 60vh;
 }
+
+section[title="Introductie ondernemen"] ul li{
+    display:none;
+    background-color: var(--background-color);
+}
+
+section[title="Introductie ondernemen"] ul li:first-child{
+    display:flex;
+    justify-content: center;
+}
+
+section[title="Introductie ondernemen"] img {
+    width: 50%;
+    margin: 10px;
+    height: 10vh;
+    object-fit: contain;
+  }
 
 li a {
     width: 100%;
     display: flex;
     height: 100%;
 }
+
+ul li h2 {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+button {
+  padding: 10px;
+  color: black;
+  position: absolute;
+  width: calc(100% - 40px);
+  bottom: 20px;
+}
+
