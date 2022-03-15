@@ -8,10 +8,10 @@
 
 :root{
     /* Colors */
-    --background-color:rgb(11, 8, 54);
-    --background-color-lighter: rgb(24, 21, 77);
-    --text-color:#fff;
-    --section-background-color:#fff;
+    --background-color: rgb(255 255 255);
+    --background-color-lighter: rgb(222 222 222);
+    --text-color: #323232;
+    --section-background-color: #c9c9c9;
 
     /* padding & margin */
     --section-padding:10px;
@@ -20,6 +20,7 @@
 
 img{
     width:100%;
+    max-width: 400px;
 }
 
 body{
@@ -28,13 +29,19 @@ body{
 }
 
 header{
-    padding:calc(var(--section-padding)*2);
+    padding: 5px 0px;
     display: none;
+}
+
+header img {
+    max-width: 200px;
 }
 
 main {
   display: flex;
   justify-content: center;
+  width: 100%;
+  /* background-color: red; */
 }
 
 section{
@@ -46,19 +53,49 @@ section{
 
 section ul {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
+  flex: 1 1 100%;
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+  /* width: 100%; */
 }
 
 section ul li p {
-  margin-bottom: 20px;
+  text-align: center;
+  margin: 20px;
+  max-width: 480px;
 }
 
-section ul li{
+section>ul li{
     background-color:rgb(43, 41, 83);
     flex: 1 1 100%;
     flex-wrap: wrap;
+}
+
+section div ul li span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+    border: 1px solid #ff0000;
+}
+
+section>header {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+}
+
+section>div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 0px 20px 20px 20px;
+}
+
+div ul li {
+    margin: 10px;
+    cursor: pointer;
+    align-self: self-end;
 }
 
 /* section[title="onderwerpen selecteren"]{
@@ -69,25 +106,28 @@ section ul li{
 section[title="Introductie ondernemen"]{
     display:flex;
     background-color:var(--background-color);
-
     width: 100%;
     max-width: 800px;
     justify-content: center;
     flex-wrap: wrap;
-    height: 60vh;
+    align-content: space-between;
+    box-shadow: 0px 0px 7px 0px #d6d6d6;
+    border-radius: 10px;
+    margin: 0px;
 }
 
-section[title="Introductie ondernemen"] ul li{
+section[title="Introductie ondernemen"]>ul li{
     display:none;
     background-color: var(--background-color);
+    justify-content: center;
 }
 
-section[title="Introductie ondernemen"] ul li:first-child{
+section[title="Introductie ondernemen"]>ul li:first-child{
     display:flex;
     justify-content: center;
 }
 
-section[title="Introductie ondernemen"] img {
+section[title="Introductie ondernemen"]>img {
     width: 50%;
     margin: 10px;
     height: 10vh;
@@ -108,8 +148,56 @@ ul li h2 {
 button {
   padding: 10px;
   color: black;
-  position: absolute;
-  width: calc(100% - 40px);
-  bottom: 20px;
+  border: none;
+  font-weight: 500;
+  background-color: white;
+  cursor: pointer;
 }
 
+section[title="Introductie ondernemen"] ul li h2 {
+    font-size: 1.5rem;
+    margin: 20px;
+}
+
+ul ul li button {
+    display: flex;
+    width: 100%;
+    font-weight: bold;
+}
+
+section ul li ul {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* @media screen and (max-height:550px){
+
+} */
+
+.container {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "book-1 . Book-3 . Book-5"
+      "book-1 Book-2 Book-3 Book-4 Book-5"
+      ". Book-2 Book-6 Book-4 Book-7"
+      ". . Book-6 . Book-7"
+      ". . . . .";
+  }
+  
+  .book-1 {grid-area: book-1;}
+  
+  .Book-2 { grid-area: Book-2; }
+  
+  .Book-3 { grid-area: Book-3; }
+  
+  .Book-4 { grid-area: Book-4; }
+  
+  .Book-5 { grid-area: Book-5; }
+  
+  .Book-6 { grid-area: Book-6; }
+  
+  .Book-7 { grid-area: Book-7; }
