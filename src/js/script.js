@@ -1,11 +1,11 @@
-const pubKey = `1e19898c87464e239192c8bfe422f280`
-const privKey = `4289fec4e962a33118340c888699438d`
+let pubKey = `1e19898c87464e239192c8bfe422f280`;
+let privKey = `4289fec4e962a33118340c888699438d`;
 
-const corsURL = `https://cors-anywhere.herokuapp.com/`
-const endpoint = `https://zoeken.oba.nl/api/v1/`
-const query = `search/?q=*`
+const corsURL = `https://cors-anywhere.herokuapp.com/`;
+const endpoint = `https://zoeken.oba.nl/api/v1/search/?q=`;
+let query = `*`;
 
-const url = `${corsURL}${endpoint}${query}&authorisation=${pubKey}&output=json`
+let url = `${corsURL}${endpoint}${query}&authorization=${pubKey}&output=json`;
 
 const config = {
     Authorization: `Bearer ${privKey}`
@@ -14,20 +14,20 @@ const config = {
 function makeConnection(){
     fetch(url, config)
     .then(response => {
-        if(response.ok){
             console.log('connectie klopt')
-            return response.json()
-        }
-               
+            return response.json()               
     })
     .then(data =>{
-        loaddata(data.results)
+        loaddata(data)
     })
-    .catch(err =>{
-        if(err = 429){
-            console.log(err)
-            console.log('hi')
-            getDataOffline(); 
+    .catch(error =>{
+        if(error === '429'){
+            // console.log(error)
+            console.log(url)
+            pubKey = `0076bc3bc11d080e07a303360178002a`
+            privKey = `187b973dc49e054fa7635313a9c8540f`
+            makeConnection();
+            // getDataOffline(); 
         }
          
     })  
