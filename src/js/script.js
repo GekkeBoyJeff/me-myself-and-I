@@ -5,10 +5,18 @@ const corsURL = `https://cors-anywhere.herokuapp.com/`;
 const endpoint = `https://zoeken.oba.nl/api/v1/search/?q=`;
 let query = `ondernemen`;
 
-let book = `&dim=Type(book)`
-let topic = `&dim=Topic(Ondernemerschap)`
+const refine = `&refine=true`
 
-let url = `${corsURL}${endpoint}${query}&authorization=${pubKey}&output=json`;
+const book = `&facet=Type(book)`
+const audiobook = `&facet=Type(audiobook)`
+const film = `&facet=Type(movie)`
+const schooltv = `&facet=Type(schooltv)`
+const uitreksel = `&facet=Type(excerpt)`
+
+
+let topic = `&facet=Topic(Ondernemerschap)`
+
+let url = `${corsURL}${endpoint}${query}${refine}&authorization=${pubKey}&output=json`;
 
 const config = {
     Authorization: `Bearer ${privKey}`
@@ -42,11 +50,11 @@ function loaddata(data){
     console.dir(data.results)
 }
 
-const getDataOffline = async () => {
-    const res = await fetch("../src/json/data.json");
-    const data = await res.json();
-    console.log(data.results);
-}
+// const getDataOffline = async () => {
+//     const res = await fetch("../src/json/data.json");
+//     const data = await res.json();
+//     console.log(data.results);
+// }
 
 // **** Intro **** //
 
@@ -61,11 +69,10 @@ introNext.addEventListener("click", function(){
     if(introIndex == 5){
         // verderbutton disabled maken
       }else{
-        document.querySelector(`section>ul li:nth-child(${introIndex})`).style.display = `none`
+        document.querySelector(`section>ul>li:nth-child(${introIndex})`).style.display = `none`
         introIndex++
-        document.querySelector(`section>ul li:nth-child(${introIndex})`).style.display = `flex`
+        document.querySelector(`section>ul>li:nth-child(${introIndex})`).style.display = `flex`
         introPrevious.style.color = `black`
-
         document.querySelector(`section div ul li:nth-child(${introIndex}) span`).style.backgroundColor = `red`
       }
       checkNeedLoad();
@@ -78,9 +85,9 @@ introPrevious.addEventListener("click", function(){
         document.querySelector(`section div ul li:first-child span`).style.backgroundColor = `red`
       }else{
         document.querySelector(`section div ul li:nth-child(${introIndex}) span`).style.backgroundColor = `white`
-        document.querySelector(`section>ul li:nth-child(${introIndex})`).style.display = `none`
+        document.querySelector(`section>ul>li:nth-child(${introIndex})`).style.display = `none`
         introIndex--
-        document.querySelector(`section>ul li:nth-child(${introIndex})`).style.display = `flex`
+        document.querySelector(`section>ul>li:nth-child(${introIndex})`).style.display = `flex`
 
         if(introIndex == 1){
             introPrevious.style.color = `rgba(205 205 205 / 90%)`
@@ -96,10 +103,14 @@ function checkNeedLoad(){
     switch(introIndex){
         case 2:
             console.log('case 2')
+            url = `${corsURL}${endpoint}${query}${book}${refine}&authorization=${pubKey}&output=json`;
+            console.log(url)
             renderBooks()
         break;
         case 3:
             console.log('case 3')
+            url = `${corsURL}${endpoint}${query}${audiobook}${refine}&authorization=${pubKey}&output=json`;
+            renderAudioBooks()
         break;
         case 4:
             console.log('case 4')
@@ -110,9 +121,9 @@ function checkNeedLoad(){
     }
 }
 
-async function getBooks(){
-    url = `${corsURL}${endpoint}${query}&authorization=${pubKey}&output=json`;
+async function getData(){
     // makeConnection()
+    console.log(url)
     try{
         response = await fetch(url);
         return await response.json();
@@ -123,22 +134,36 @@ async function getBooks(){
 }
 
 async function renderBooks(){
-    let books = await getBooks();
+    let books = await getData();
             console.log(books)
 
     let i
         for(i = 0; i < 7; i++){
-            document.querySelector(`.book-${i}`).innerHTML = ''
-            document.querySelector(`.book-${i}`).insertAdjacentHTML('beforeend',`<img src="${books.results[i].coverimages[1]}" alt="">`)
+            let boek = document.querySelector(`.book-${i}`)
+            boek.innerHTML = ''
+            boek.insertAdjacentHTML('beforeend',`<img src="${books.results[i].coverimages[1]}" alt="">`)
         }
 }
+
+async function renderAudioBooks(){    
+    let luisterBoeken = await getData();
+    console.log(luisterBoeken)
+
+    let i
+    for(i = 0; i < 7; i++){
+        let luisterBoek = document.querySelector(`.container2>.book-${i}`)
+        luisterBoek.innerHTML = ''
+        luisterBoek.insertAdjacentHTML('beforeend',`<img src="${luisterBoeken.results[i].coverimages[1]}" alt="">`)
+    }
+}
+
 // **** Eind intro **** //
 
 async function getError(){
     if(response.status === 429){
         console.log(`%c Alweer... | ${response.statusText}`, `color:red;font-weight:bold;`)
     }else if(response.status === 403){
-        console.log(`%c Geen toegang`, `color:red;font-weight:bold;`)
+        console.log(`%c Geen toegang`, `color:orange;font-weight:bold;`)
         console.log(`%c Vraag opnieuw toegang aan: https://cors-anywhere.herokuapp.com/corsdemo`, `color:red;font-weight:bold;`)
     }
 }
