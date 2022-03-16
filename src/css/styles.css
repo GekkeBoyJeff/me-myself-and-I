@@ -42,6 +42,9 @@ main {
   justify-content: center;
   width: 100%;
   /* background-color: red; */
+  background: rgb(215 30 30 / 15%);
+  /* background: url('https://images.unsplash.com/photo-1553484771-371a605b060b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'); */
+  background-size: cover;
 }
 
 section{
@@ -120,7 +123,7 @@ section[title="Introductie ondernemen"]{
     align-content: space-between;
     box-shadow: 0px 0px 7px 0px #d6d6d6;
     border-radius: 10px;
-    margin: 0px;
+    /* margin: 0px; */
 }
 
 section[title="Introductie ondernemen"] > ul>li{
