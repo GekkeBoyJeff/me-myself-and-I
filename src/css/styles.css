@@ -63,6 +63,7 @@ section ul li p {
   text-align: center;
   margin: 20px;
   max-width: 480px;
+  flex: 1 1 100%;
 }
 
 section>ul li{
@@ -154,6 +155,15 @@ button {
   cursor: pointer;
 }
 
+button:last-child {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+}
+
+button:last-child::after {content: '>';display: flex;margin-left: 5px;border-radius: 10px;color: red;background-color: white;width: 15px;justify-content: center;}
+
 section[title="Introductie ondernemen"] ul li h2 {
     font-size: 1.5rem;
     margin: 20px;
@@ -175,29 +185,36 @@ section ul li ul {
 
 } */
 
-.container {  display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    gap: 0px 0px;
+.container {
+    display: grid;
+    gap: 10px 10px;
+    max-width: 500px;
     grid-auto-flow: row;
     grid-template-areas:
-      "book-1 . Book-3 . Book-5"
-      "book-1 Book-2 Book-3 Book-4 Book-5"
-      ". Book-2 Book-6 Book-4 Book-7"
-      ". . Book-6 . Book-7"
-      ". . . . .";
-  }
-  
-  .book-1 {grid-area: book-1;}
-  
-  .Book-2 { grid-area: Book-2; }
-  
-  .Book-3 { grid-area: Book-3; }
-  
-  .Book-4 { grid-area: Book-4; }
-  
-  .Book-5 { grid-area: Book-5; }
-  
-  .Book-6 { grid-area: Book-6; }
-  
-  .Book-7 { grid-area: Book-7; }
+    "Book-0 Book-1 Book-1 Book-1 Book-2 Book-3"
+    "Book-0 Book-1 Book-1 Book-1 Book-2 Book-3"
+    "Book-0 Book-1 Book-1 Book-1 Book-2 Book-3"
+    "Book-4 Book-1 Book-1 Book-1 Book-5 Book-6"
+    "Book-4 Book-1 Book-1 Book-1 Book-5 Book-6"
+    "Book-4 Book-1 Book-1 Book-1 Book-5 Book-6";
+}
+
+.Book-0 { grid-area: Book-0; }
+
+.Book-1 { grid-area: Book-1; }
+
+.Book-2 { grid-area: Book-2; }
+
+.Book-3 { grid-area: Book-3; }
+
+.Book-4 { grid-area: Book-4; }
+
+.Book-5 { grid-area: Book-5; }
+
+.Book-6 { grid-area: Book-6; }
+
+
+  .container div img {
+    height: 100%;
+    object-fit: cover;
+}

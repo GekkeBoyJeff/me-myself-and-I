@@ -5,36 +5,38 @@ const corsURL = `https://cors-anywhere.herokuapp.com/`;
 const endpoint = `https://zoeken.oba.nl/api/v1/search/?q=`;
 let query = `ondernemen`;
 
+let book = `&dim=Type(book)`
+let topic = `&dim=Topic(Ondernemerschap)`
+
 let url = `${corsURL}${endpoint}${query}&authorization=${pubKey}&output=json`;
 
 const config = {
     Authorization: `Bearer ${privKey}`
   };
 
-function makeConnection(){
-    fetch(url, config)
-    .then(response => {
-            console.log('connectie klopt')
-            console.log(url)
-            return response.json();           
-    })
-    .then(data =>{
-        loaddata(data)
-    })
-    .catch(error =>{
-        if(error === '429'){
-            console.log(error)
-            console.log(url)
-            pubKey = `0076bc3bc11d080e07a303360178002a`
-            privKey = `187b973dc49e054fa7635313a9c8540f`
-            makeConnection();
-            // getDataOffline(); 
-        }
-         
-    })  
-}
+// function makeConnection(){
+//     fetch(url, config)
+//     .then(response => {
+//             console.log('connectie klopt')
+//             console.log(url)
+//             return response.json();           
+//     })
+//     .then(data =>{
+//         loaddata(data)
+//     })
+//     .catch(error =>{
+//         if(error === '429'){
+//             console.log(error)
+//             console.log(url)
+//             pubKey = `0076bc3bc11d080e07a303360178002a`
+//             privKey = `187b973dc49e054fa7635313a9c8540f`
+//             makeConnection();
+//             // getDataOffline(); 
+//         }
+//     })  
+// }
 
-makeConnection()
+// makeConnection()
 
 function loaddata(data){
     console.dir(data.results)
@@ -66,6 +68,7 @@ introNext.addEventListener("click", function(){
 
         document.querySelector(`section div ul li:nth-child(${introIndex}) span`).style.backgroundColor = `red`
       }
+      checkNeedLoad();
 })
 
 introPrevious.addEventListener("click", function(){
@@ -84,11 +87,58 @@ introPrevious.addEventListener("click", function(){
             document.querySelector(`section div ul li:first-child span`).style.backgroundColor = `red`
         }
     }
+    checkNeedLoad();
 })
 
 // boeken inladen
 
+function checkNeedLoad(){
+    switch(introIndex){
+        case 2:
+            console.log('case 2')
+            renderBooks()
+        break;
+        case 3:
+            console.log('case 3')
+        break;
+        case 4:
+            console.log('case 4')
+        break;
+        case 5:
+            console.log('case 5')
+        break;
+    }
+}
 
+async function getBooks(){
+    url = `${corsURL}${endpoint}${query}&authorization=${pubKey}&output=json`;
+    // makeConnection()
+    try{
+        response = await fetch(url);
+        return await response.json();
+    }
+    catch(error){
+        getError()
+    }
+}
 
+async function renderBooks(){
+    let books = await getBooks();
+            console.log(books)
+
+    let i
+        for(i = 0; i < 7; i++){
+            document.querySelector(`.book-${i}`).innerHTML = ''
+            document.querySelector(`.book-${i}`).insertAdjacentHTML('beforeend',`<img src="${books.results[i].coverimages[1]}" alt="">`)
+        }
+}
 // **** Eind intro **** //
 
+async function getError(){
+    if(response.status === 429){
+        console.log(`%c Alweer... | ${response.statusText}`, `color:red;font-weight:bold;`)
+    }else if(response.status === 403){
+        console.log(`%c Geen toegang`, `color:red;font-weight:bold;`)
+        console.log(`%c Vraag opnieuw toegang aan: https://cors-anywhere.herokuapp.com/corsdemo`, `color:red;font-weight:bold;`)
+    }
+}
