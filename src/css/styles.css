@@ -5,82 +5,75 @@
     list-style-type: none;
     color:var(--text-color);
 }
-
 :root{
-    /* Colors */
+   /* Colors */
     --background-color: rgb(255 255 255);
     --background-color-lighter: rgb(222 222 222);
     --text-color: #323232;
     --section-background-color: #c9c9c9;
-
-    /* padding & margin */
+   /* padding & margin */
     --section-padding:10px;
     --section-margin:10px;
 }
-
 img{
     width:100%;
     max-width: 400px;
 }
-
 body{
-    background-color:var(--background-color);
+    background-color: rgb(242 193 193);
     display:flex;
+    height: 100%;
 }
-
 header{
     padding: 5px 0px;
     display: none;
 }
-
 header img {
     max-width: 200px;
 }
-
 main {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  /* background-color: red; */
-  background: rgb(215 30 30 / 15%);
-  /* background: url('https://images.unsplash.com/photo-1553484771-371a605b060b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'); */
-  background-size: cover;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+   /* background-color: red;
+    */
+    background: rgb(242 193 193);
+   /* background: url('https://images.unsplash.com/photo-1553484771-371a605b060b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');
+    */
+    background-size: cover;
 }
-
 section{
     padding:var(--section-padding);
     margin:var(--section-margin);
     background: var(--section-background-color);
     display: none;
 }
-
 section ul {
-  display: flex;
-  flex: 1 1 100%;
-  /* flex-direction: row; */
-  /* flex-wrap: wrap; */
-  /* width: 100%; */
+    display: flex;
+    flex: 1 1 100%;
+   /* flex-direction: row;
+    */
+   /* flex-wrap: wrap;
+    */
+   /* width: 100%;
+    */
 }
-
 section ul li p {
-  text-align: center;
-  margin: 20px;
-  max-width: 480px;
-  flex: 1 1 100%;
+    text-align: center;
+    margin: 20px;
+    max-width: 480px;
+    flex: 1 1 100%;
 }
-
 section > ul>li{
-    background-color:rgb(43, 41, 83);
     flex: 1 1 100%;
     flex-wrap: wrap;
+    overflow: hidden;
 }
-
-
 section>ul li ul li img {
     height: 100%;
     object-fit: cover;
-  }
-
+    max-width: 100%;
+}
 section div ul li span {
     width: 10px;
     height: 10px;
@@ -88,32 +81,28 @@ section div ul li span {
     display: block;
     border: 1px solid #ff0000;
 }
-
 section>header {
     display: flex;
     width: 50%;
     justify-content: center;
 }
-
 section>div {
     display: flex;
     width: 100%;
     justify-content: space-between;
     margin: 0px 20px 20px 20px;
 }
-
 div ul li {
     margin: 10px;
     cursor: pointer;
     align-self: self-end;
 }
-
 /* section[title="onderwerpen selecteren"]{
     background-color:var(--background-color);
     padding:0px;
-} */
-
-section[title="Introductie ondernemen"]{
+}
+*/
+section[title="Introductie ondernemen"], section[title="onderwerpen selecteren"]{
     display:flex;
     background-color:var(--background-color);
     width: 100%;
@@ -123,133 +112,287 @@ section[title="Introductie ondernemen"]{
     align-content: space-between;
     box-shadow: 0px 0px 7px 0px #d6d6d6;
     border-radius: 10px;
-    /* margin: 0px; */
+   /* margin: 0px;
+    */
 }
-
 section[title="Introductie ondernemen"] > ul>li{
     display:none;
     background-color: var(--background-color);
     justify-content: center;
 }
-
 section[title="Introductie ondernemen"] > ul>li:first-child{
     display:flex;
     justify-content: center;
 }
-
 section[title="Introductie ondernemen"]>img {
     width: 50%;
     margin: 10px;
     height: 10vh;
     object-fit: contain;
-  }
-
+}
+section[title="onderwerpen selecteren"] ul li button {
+    background-color: rgba(255,255,255,0);
+    color: black;
+    height: 100%;
+    align-items: end;
+    font-size: 1.2rem;
+    color: white;
+    text-shadow: 0 0 5px #b7b7b7;
+   /* background-color: white;
+    */
+    z-index: 3;
+    text-align: left;
+}
+section[title="onderwerpen selecteren"] ul li {
+    min-width: 150px;
+    flex: 1 1 40%;
+    height: 150px;
+   /* text-align: -webkit-center;
+    */
+    box-shadow: 0px 0px 5px #d7d7d7;
+   /* border-bottom: 3px solid red;
+    */
+    margin: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+    position: relative;
+    display: flex;
+    background-color: #ffd281;
+}
+/* section[title="onderwerpen selecteren"] ul li:hover {
+    transform: scale(1.05);
+    background-color: #f9dddd;
+    border:3px solid red;
+}
+*/
 li a {
     width: 100%;
     display: flex;
     height: 100%;
 }
-
 ul li h2 {
     flex: 1 1 100%;
     text-align: center;
-  }
-
-button {
-  padding: 10px;
-  color: black;
-  border: none;
-  font-weight: 500;
-  background-color: white;
-  cursor: pointer;
 }
-
+button {
+    padding: 10px;
+    color: black;
+    border: none;
+    font-weight: 500;
+    background-color: white;
+    cursor: pointer;
+}
 button:last-child {
     background-color: red;
     color: white;
     border-radius: 5px;
     display: flex;
 }
-
-button:last-child::after {content: '>';display: flex;margin-left: 5px;border-radius: 10px;color: red;background-color: white;width: 15px;justify-content: center;}
-
+button:last-child::after {
+   content: '>';
+   display: flex;
+   margin-left: 5px;
+   border-radius: 10px;
+   color: red;
+   background-color: white;
+   width: 15px;
+   justify-content: center;
+}
 section[title="Introductie ondernemen"] ul li h2 {
     font-size: 1.5rem;
     margin: 20px;
 }
-
 ul ul li button {
     display: flex;
     width: 100%;
     font-weight: bold;
 }
-
 section ul li ul {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    gap: 10px;
+    gap: 10px 0px;
     background-color: #fff5f5;
     margin: 20px;
     padding: 20px;
     border-radius: 10px;
 }
-
+section ul li:nth-child(5) ul {
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+}
+section ul li:nth-child(5) ul li {
+    flex: 1 1 100%;
+    height: 16vh;
+    position: relative;
+    font-size: 0.7rem;
+}
+section ul li:nth-child(5) ul li p {
+}
+section ul li:nth-child(5) ul li h3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+    text-shadow: 0 0 2px black;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
 /* @media screen and (max-height:550px){
-
-} */
-
+}
+*/
 .container {
     display: grid;
-    gap: 10px 10px;
     grid-auto-flow: row;
-    grid-template-areas:
-        "Book-0 Book-1 Book-1 Book-1 Book-2 Book-3"
-        "Book-0 Book-1 Book-1 Book-1 Book-2 Book-3"
-        "Book-0 Book-1 Book-1 Book-1 Book-2 Book-3"
-        "Book-4 Book-1 Book-1 Book-1 Book-5 Book-6"
-        "Book-4 Book-1 Book-1 Book-1 Book-5 Book-6"
-        "Book-4 Book-1 Book-1 Book-1 Book-5 Book-6";
-    background-color: #ffefec;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
+    grid-template-areas: "Book-0 Book-1 Book-1 Book-1 Book-2 Book-3" "Book-0 Book-1 Book-1 Book-1 Book-2 Book-3" "Book-0 Book-1 Book-1 Book-1 Book-2 Book-3" "Book-4 Book-1 Book-1 Book-1 Book-5 Book-6" "Book-4 Book-1 Book-1 Book-1 Book-5 Book-6" "Book-4 Book-1 Book-1 Book-1 Book-5 Book-6";
+    justify-items: center;
 }
-
-.Book-0 { grid-area: Book-0; }
-
-.Book-1 { grid-area: Book-1; }
-
-.Book-2 { grid-area: Book-2; }
-
-.Book-3 { grid-area: Book-3; }
-
-.Book-4 { grid-area: Book-4; }
-
-.Book-5 { grid-area: Book-5; }
-
-.Book-6 { grid-area: Book-6; }
-
-.container2 {  display: grid;
+.Book-0 {
+    grid-area: Book-0;
+}
+.Book-1 {
+    grid-area: Book-1;
+}
+.Book-2 {
+    grid-area: Book-2;
+}
+.Book-3 {
+    grid-area: Book-3;
+}
+.Book-4 {
+    grid-area: Book-4;
+}
+.Book-5 {
+    grid-area: Book-5;
+}
+.Book-6 {
+    grid-area: Book-6;
+}
+.container2 {
+    display: grid;
     background-color: #ffefec;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
     grid-auto-flow: row;
-    grid-template-areas:
-      "Book-0 Book-0 Book-0 Book-1 Book-1 Book-2 Book-2 Book-5 Book-5"
-      "Book-0 Book-0 Book-0 Book-1 Book-1 Book-2 Book-2 Book-5 Book-5"
-      "Book-0 Book-0 Book-0 Book-3 Book-3 Book-4 Book-4 Book-6 Book-6"
-      "Book-0 Book-0 Book-0 Book-3 Book-3 Book-4 Book-4 Book-6 Book-6";
-  }
-
-
-  .container div img,.container2 div img {
+    grid-template-areas: "Book-0 Book-0 Book-0 Book-1 Book-1 Book-2 Book-2 Book-5 Book-5" "Book-0 Book-0 Book-0 Book-1 Book-1 Book-2 Book-2 Book-5 Book-5" "Book-0 Book-0 Book-0 Book-3 Book-3 Book-4 Book-4 Book-6 Book-6" "Book-0 Book-0 Book-0 Book-3 Book-3 Book-4 Book-4 Book-6 Book-6";
+}
+.container div img,.container2 div img {
     height: 100%;
     object-fit: cover;
 }
-
 .container div, .container2 div {
+    height: auto;
+    width:85%;
+}
+section[title="onderwerpen selecteren"]{
+    display: none;
+    align-content: baseline;
+    height: fit-content;
+}
+section[title="onderwerpen selecteren"]>*, section[title="onderwerpen selecteren"]>header>* {
+    flex: 1 1 90%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    text-align: center;
+}
+section[title="onderwerpen selecteren"] ul li::after {
+    content: '';
+    height: 70%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    background-position: right;
+    z-index: 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transition: 0.5s;
+}
+section[title="onderwerpen selecteren"] ul li button::after {
+    content: '';
+}
+section[title="onderwerpen selecteren"] ul li::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    width: 200px;
+    height: 140%;
+    background-color: #ffc6aa;
+    z-index: 1;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+section[title="onderwerpen selecteren"] ul li:first-child::after {
+    background-image: url(/src/img/fingerprint.svg);
+}
+section[title="onderwerpen selecteren"] ul li:nth-child(2)::after {
+    background-image: url(/src/img/goals.svg);
+}
+section[title="onderwerpen selecteren"] ul li:nth-child(3)::after {
+    background-image: url(/src/img/marketing.svg);
+}
+section[title="onderwerpen selecteren"] ul li:nth-child(4)::after {
+    background-image: url(/src/img/calender.svg);
+    height: 90%;
+}
+section[title="onderwerpen selecteren"] ul li:nth-child(5)::after {
+    background-image: url(/src/img/mirror.svg);
+    bottom: 10px;
+}
+@media screen and (max-width:400px){
+    body {
+        display: block;
+   }
+}
+section[title="onderwerpen selecteren"] ul li:hover::before {
+    background-color: #ff6c6c;
+    transition:0.5s;
+    transform:scale(1.05) 
+}
+section[title="onderwerpen selecteren"] ul li:hover::after {
+    transition:0.5s;
+    transform:scale(1.05);
+    margin-right:10px;
+    margin-bottom:10px;
+}
+
+
+section[title="onderwerpen selecteren"] ul li button::before {
+    position: absolute;
     height: 100%;
-    width:100%;
+    width: 100%;
+    left: 2rem;
+    bottom: 0px;
+    font-size: 5rem;
+    opacity: 0.4;
+}
+
+section[title="onderwerpen selecteren"] ul li:first-child button::before {
+    content: '1';
+}
+
+section[title="onderwerpen selecteren"] ul li:nth-child(2) button::before {
+    content: '2';
+}
+
+section[title="onderwerpen selecteren"] ul li:nth-child(3) button::before {
+    content: '3';
+}
+
+section[title="onderwerpen selecteren"] ul li:nth-child(4) button::before {
+    content: '4';
+}
+
+section[title="onderwerpen selecteren"] ul li:nth-child(5) button::before {
+    content: '5';
+}
+
+section[title="onderwerpen selecteren"] ul li:hover > button::before {
+    opacity: 1;
 }
