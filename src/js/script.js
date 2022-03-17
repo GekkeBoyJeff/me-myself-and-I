@@ -146,9 +146,16 @@ async function getData(){
     }
 }
 
-async function renderBooks(){
+async function fetchUrl(){
+    let resultaten = await getData()
+    console.log(resultaten)
+    return resultaten;
+}
+
+async function renderBooks(resultaten){
     let books = await getData();
             console.log(books)
+
 
     let i
         for(i = 0; i < 7; i++){

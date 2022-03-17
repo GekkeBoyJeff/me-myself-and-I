@@ -292,6 +292,7 @@ section[title="onderwerpen selecteren"]{
     display: none;
     align-content: baseline;
     height: fit-content;
+    align-self: center;
 }
 section[title="onderwerpen selecteren"]>*, section[title="onderwerpen selecteren"]>header>* {
     flex: 1 1 90%;
