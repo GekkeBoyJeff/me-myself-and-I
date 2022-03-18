@@ -3,6 +3,8 @@ let privKey = `4289fec4e962a33118340c888699438d`;
 
 const corsURL = `https://cors-anywhere.herokuapp.com/`;
 const endpoint = `https://zoeken.oba.nl/api/v1/search/?q=`;
+const endpointDetail = `https://zoeken.oba.nl/api/v1/details/?frabl=`
+const endpoint2 = `http://obaliquid.staging.aquabrowser.nl/onderwijs/api/v1/search/?q=`
 let query = `ondernemen`;
 
 const refine = `&refine=true`
@@ -22,34 +24,6 @@ let url = `${corsURL}${endpoint}${query}${refine}&authorization=${pubKey}&output
 const config = {
     Authorization: `Bearer ${privKey}`
   };
-
-// function makeConnection(){
-//     fetch(url, config)
-//     .then(response => {
-//             console.log('connectie klopt')
-//             console.log(url)
-//             return response.json();           
-//     })
-//     .then(data =>{
-//         loaddata(data)
-//     })
-//     .catch(error =>{
-//         if(error === '429'){
-//             console.log(error)
-//             console.log(url)
-//             pubKey = `0076bc3bc11d080e07a303360178002a`
-//             privKey = `187b973dc49e054fa7635313a9c8540f`
-//             makeConnection();
-//             // getDataOffline(); 
-//         }
-//     })  
-// }
-
-// makeConnection()
-
-function loaddata(data){
-    console.dir(data.results)
-}
 
 // const getDataOffline = async () => {
 //     const res = await fetch("../src/json/data.json");
@@ -74,6 +48,7 @@ introNext.addEventListener("click", function(){
         // verderbutton disabled maken
         introSection.style.setProperty('display', 'none')
         optionSection.style.setProperty('display', 'flex')
+        localStorage.setItem("intro", "done");
       }else{
         // document.querySelector(`section>ul>li:nth-child(${introIndex})`).style.display = `none`
         document.querySelector(`section>ul>li:nth-child(${introIndex})`).style.setProperty('display', 'none') 
@@ -106,6 +81,16 @@ introPrevious.addEventListener("click", function(){
     checkNeedLoad();
 })
 
+// onload kijken of de gebruiker al door de intro is gegaan
+
+window.onload = function(){
+    if(localStorage.getItem("intro") === null){
+        introSection.style.setProperty('display', 'flex')
+    }else{
+        optionSection.style.setProperty('display', 'flex')
+        introSection.style.setProperty('display', 'none')
+    }
+}
 // boeken inladen
 
 function checkNeedLoad(){
@@ -134,6 +119,8 @@ function checkNeedLoad(){
     }
 }
 
+// fetch
+
 async function getData(){
     // makeConnection()
     console.log(url)
@@ -146,55 +133,7 @@ async function getData(){
     }
 }
 
-async function renderBooks(resultaten){
-    let books = await getData();
-            console.log(books)
-
-
-    let i
-        for(i = 0; i < 7; i++){
-            let boek = document.querySelector(`.book-${i}`)
-            boek.innerHTML = ''
-            boek.insertAdjacentHTML('beforeend',`<img src="${books.results[i].coverimages[1]}" alt="">`)
-        }
-}
-
-async function renderAudioBooks(){    
-    let luisterBoeken = await getData();
-    console.log(luisterBoeken)
-
-    let i
-    for(i = 0; i < 7; i++){
-        let luisterBoek = document.querySelector(`.container2>.book-${i}`)
-        luisterBoek.innerHTML = ''
-        luisterBoek.insertAdjacentHTML('beforeend',`<img src="${luisterBoeken.results[i].coverimages[1]}" alt="">`)
-    }
-}
-
-async function renderMovies(){
-    let films = await getData();
-    console.log(films)
-
-    let i
-    for(i = 0; i < 7; i++){
-        let movies = document.querySelector(`section[title="Introductie ondernemen"]>ul>li:nth-child(4) .container>.book-${i}`)
-        movies.innerHTML = ''
-        movies.insertAdjacentHTML('beforeend',`<img src="${films.results[i].coverimages[1]}" alt="">`)
-    }
-}
-
-async function renderActivities(){
-    let activities = await getData()
-    console.log(activities)
-
-    let i
-    for(i = 1; i < 3; i++){ // als ik bij 0 begin, dan vraagt ie om nth-child(0)
-        let listItem = document.querySelector(`section[title="Introductie ondernemen"]>ul>li:nth-child(5) ul li:nth-child(${i})`)
-        listItem.innerHTML = ''
-        listItem.insertAdjacentHTML('beforeend', `<img src="${activities.results[i-1].coverimages[0]}" alt=""><h3>${activities.results[i-1].titles[0]}</h3>`)
-    }
-}
-// **** Eind intro **** //
+// Fetch error handling
 
 async function getError(){
     if(response.status === 429){
@@ -205,6 +144,58 @@ async function getError(){
     }
 }
 
+// Intro secties renderen
+
+async function renderBooks(){
+    let data = await getData();
+            console.log(data)
+
+
+    let i
+        for(i = 0; i < 7; i++){
+            let boek = document.querySelector(`.book-${i}`)
+            boek.innerHTML = ''
+            boek.insertAdjacentHTML('beforeend',`<img src="${data.results[i].coverimages[1]}" alt="">`)
+        }
+}
+
+async function renderAudioBooks(){    
+    let data = await getData();
+    console.log(data)
+
+    let i
+    for(i = 0; i < 7; i++){
+        let luisterBoek = document.querySelector(`.container2>.book-${i}`)
+        luisterBoek.innerHTML = ''
+        luisterBoek.insertAdjacentHTML('beforeend',`<img src="${data.results[i].coverimages[1]}" alt="">`)
+    }
+}
+
+async function renderMovies(){
+    let data = await getData();
+    console.log(data)
+
+    let i
+    for(i = 0; i < 7; i++){
+        let movies = document.querySelector(`section[title="Introductie ondernemen"]>ul>li:nth-child(4) .container>.book-${i}`)
+        movies.innerHTML = ''
+        movies.insertAdjacentHTML('beforeend',`<img src="${data.results[i].coverimages[1]}" alt="">`)
+    }
+}
+
+async function renderActivities(){
+    let data = await getData()
+    console.log(data)
+
+    let i
+    for(i = 1; i < 3; i++){ // als ik bij 0 begin, dan vraagt ie om nth-child(0)
+        let listItem = document.querySelector(`section[title="Introductie ondernemen"]>ul>li:nth-child(5) ul li:nth-child(${i})`)
+        listItem.innerHTML = ''
+        listItem.insertAdjacentHTML('beforeend', `<img src="${data.results[i-1].coverimages[0]}" alt=""><h3>${data.results[i-1].titles[0]}</h3>`)
+    }
+}
+// **** Eind intro **** //
+
 // **** Begin opties **** // knoppen
 
 const identityBtn = document.querySelector(`section[title="onderwerpen selecteren"] ul li:nth-child(1) button`)
@@ -212,8 +203,9 @@ const droomdoelBtn = document.querySelector(`section[title="onderwerpen selecter
 const marketingBtn = document.querySelector(`section[title="onderwerpen selecteren"] ul li:nth-child(3) button`)
 const plannenBtn = document.querySelector(`section[title="onderwerpen selecteren"] ul li:nth-child(4) button`)
 const zelfreflectieBtn = document.querySelector(`section[title="onderwerpen selecteren"] ul li:nth-child(5) button`)
+const backButton = document.querySelector('section:nth-child(n+3) > header button')
 
-// secties //
+// opties // > secties //
 
 const identitySection = document.querySelector(`section[title="identiteit"]`)
 const droomDoelSection = document.querySelector(`section[title="identiteit"]`)
@@ -221,12 +213,69 @@ const marketingPlanSection = document.querySelector(`section[title="identiteit"]
 const lerenPlannenSection = document.querySelector(`section[title="identiteit"]`)
 const zelfReflectieSection = document.querySelector(`section[title="identiteit"]`)
 
+const showBooksOnly = document.querySelector(`section:nth-child(n+3) > ul:nth-of-type(1)>li:nth-child(1)`);
+const showAudioOnly = document.querySelector(`section:nth-child(n+3) > ul:nth-of-type(1)>li:nth-child(2)`);
+const showFilmOnly = document.querySelector(`section:nth-child(n+3) > ul:nth-of-type(1)>li:nth-child(3)`);
+const showActivitiesOnly = document.querySelector(`section:nth-child(n+3) > ul:nth-of-type(1)>li:nth-child(4)`);
+
+const result = document.querySelectorAll(`section:nth-child(n+3) > ul:nth-of-type(2)`);
+const detailscreen = document.querySelector(`section[title="detailscherm"]`)
+
 // eventlisteners knoppen
+
+backButton.addEventListener("click", function(){
+    document.querySelector(`
+    section[title="identiteit"],
+    section[title="droomdoel"],
+    section[title="marketingplan"],
+    section[title="leren plannen"],
+    section[title="Zelfreflectie"]`).style.setProperty('display', 'none')
+    optionSection.style.setProperty('display', 'flex')
+})
 
 identityBtn.addEventListener("click", function(){
     optionSection.style.setProperty('display', 'none')
     identitySection.style.setProperty('display', 'flex')
     introSection.style.setProperty('display', 'none')
+    loadIdentity()
+})
+
+window.addEventListener('hashchange', async function(){
+    let hash = window.location.hash.substring(1)
+    console.log(hash)
+
+    url = `${corsURL}${endpointDetail}${hash}&authorization=${pubKey}&output=json`
+
+    let data = await getData();
+    console.log(data)
+
+    identitySection.style.setProperty('display', 'none')
+    detailscreen.style.setProperty('display', 'flex')
+
+    document.querySelector(`section[title="detailscherm"] header h2`).innerHTML = `${data.record.titles[0]}`
+    document.querySelector(`section[title="detailscherm"] ul:first-of-type`).insertAdjacentHTML('beforeend', `<li><img src="${data.record.coverimages[1]}"></img></li><li><p>${data.record.summaries[0]}</p></li>`)
 })
 
 // section data inladen
+
+async function loadIdentity(){
+    query = 'jezelf+ontdekken'
+    url = `${corsURL}${endpoint}${query}${refine}&authorization=${pubKey}&output=json`;
+
+    // URL 2 Data ophalen
+    // query = `jezelf+leren+kennen`
+    // url = `${corsURL}${endpoint2}${query}${refine}&authorization=${pubKey}&output=json`
+
+    let data = await getData();
+    console.log(data)
+
+    let list = document.querySelector('section[title="identiteit"] ul:nth-of-type(2)')
+    console.log(list)
+    for(i = 0; i < 20; i++){ // als ik bij 0 begin, dan vraagt ie om nth-child(0)
+        try{
+            list.insertAdjacentHTML('beforeend',`<li><a href="#${data.results[i].frabl.value}"><img src="${data.results[i].coverimages[1]}" alt=""><p>${data.results[i].titles[0]}</p>` +/* <p>${data.results[i].authors[0]}</p>*/ `</a></li>`)
+        }catch(error){
+            console.log(error)
+        }
+    }
+}
