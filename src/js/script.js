@@ -146,12 +146,6 @@ async function getData(){
     }
 }
 
-async function fetchUrl(){
-    let resultaten = await getData()
-    console.log(resultaten)
-    return resultaten;
-}
-
 async function renderBooks(resultaten){
     let books = await getData();
             console.log(books)
@@ -210,3 +204,29 @@ async function getError(){
         console.log(`%c Vraag opnieuw toegang aan: https://cors-anywhere.herokuapp.com/corsdemo`, `color:red;font-weight:bold;`)
     }
 }
+
+// **** Begin opties **** // knoppen
+
+const identityBtn = document.querySelector(`section[title="onderwerpen selecteren"] ul li:nth-child(1) button`)
+const droomdoelBtn = document.querySelector(`section[title="onderwerpen selecteren"] ul li:nth-child(2) button`)
+const marketingBtn = document.querySelector(`section[title="onderwerpen selecteren"] ul li:nth-child(3) button`)
+const plannenBtn = document.querySelector(`section[title="onderwerpen selecteren"] ul li:nth-child(4) button`)
+const zelfreflectieBtn = document.querySelector(`section[title="onderwerpen selecteren"] ul li:nth-child(5) button`)
+
+// secties //
+
+const identitySection = document.querySelector(`section[title="identiteit"]`)
+const droomDoelSection = document.querySelector(`section[title="identiteit"]`)
+const marketingPlanSection = document.querySelector(`section[title="identiteit"]`)
+const lerenPlannenSection = document.querySelector(`section[title="identiteit"]`)
+const zelfReflectieSection = document.querySelector(`section[title="identiteit"]`)
+
+// eventlisteners knoppen
+
+identityBtn.addEventListener("click", function(){
+    optionSection.style.setProperty('display', 'none')
+    identitySection.style.setProperty('display', 'flex')
+    introSection.style.setProperty('display', 'none')
+})
+
+// section data inladen

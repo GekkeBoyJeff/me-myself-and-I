@@ -41,22 +41,30 @@ main {
    /* background: url('https://images.unsplash.com/photo-1553484771-371a605b060b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');
     */
     background-size: cover;
+    flex-wrap: wrap;
 }
 section{
     padding:var(--section-padding);
     margin:var(--section-margin);
-    background: var(--section-background-color);
     display: none;
+    background-color: white;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-between;
+    box-shadow: 0px 0px 7px 0px #d6d6d6;
+    border-radius: 10px;
+    max-width: 1000px;
+    position: relative;
+    overflow: hidden;
 }
 section ul {
     display: flex;
     flex: 1 1 100%;
-   /* flex-direction: row;
-    */
-   /* flex-wrap: wrap;
-    */
-   /* width: 100%;
-    */
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    z-index: 3;
 }
 section ul li p {
     text-align: center;
@@ -83,14 +91,18 @@ section div ul li span {
 }
 section>header {
     display: flex;
-    width: 50%;
+    width: 100%;
     justify-content: center;
+    position: relative;
+    margin: 10px;
+    flex-wrap: wrap;
 }
 section>div {
     display: flex;
     width: 100%;
     justify-content: space-between;
     margin: 0px 20px 20px 20px;
+    z-index: 2;
 }
 div ul li {
     margin: 10px;
@@ -117,7 +129,7 @@ section[title="Introductie ondernemen"], section[title="onderwerpen selecteren"]
 }
 section[title="Introductie ondernemen"] > ul>li{
     display:none;
-    background-color: var(--background-color);
+    /*! background-color: var(--background-color); */
     justify-content: center;
 }
 section[title="Introductie ondernemen"] > ul>li:first-child{
@@ -132,16 +144,15 @@ section[title="Introductie ondernemen"]>img {
 }
 section[title="onderwerpen selecteren"] ul li button {
     background-color: rgba(255,255,255,0);
-    color: black;
     height: 100%;
     align-items: end;
     font-size: 1.2rem;
     color: white;
-    text-shadow: 0 0 5px #b7b7b7;
-   /* background-color: white;
-    */
+    text-shadow: 0 0 5px #7d7d7d;
     z-index: 3;
     text-align: left;
+    display: flex;
+    font-weight: 600;
 }
 section[title="onderwerpen selecteren"] ul li {
     min-width: 150px;
@@ -158,7 +169,7 @@ section[title="onderwerpen selecteren"] ul li {
     transition: 0.5s;
     position: relative;
     display: flex;
-    background-color: #ffd281;
+    background-color: #fff0e5;
 }
 /* section[title="onderwerpen selecteren"] ul li:hover {
     transform: scale(1.05);
@@ -183,13 +194,14 @@ button {
     background-color: white;
     cursor: pointer;
 }
-button:last-child {
+div button:last-child {
     background-color: red;
     color: white;
     border-radius: 5px;
     display: flex;
+    z-index: 2;
 }
-button:last-child::after {
+div button:last-child::after {
    content: '>';
    display: flex;
    margin-left: 5px;
@@ -292,23 +304,22 @@ section[title="onderwerpen selecteren"]{
     display: none;
     align-content: baseline;
     height: fit-content;
-    align-self: center;
 }
 section[title="onderwerpen selecteren"]>*, section[title="onderwerpen selecteren"]>header>* {
     flex: 1 1 90%;
     flex-wrap: wrap;
     flex-direction: row;
     text-align: center;
+    z-index: 2;
 }
 section[title="onderwerpen selecteren"] ul li::after {
     content: '';
     height: 70%;
     width: 100%;
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     right: 10px;
     background-position: right;
-    z-index: 1;
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 1;
@@ -350,6 +361,9 @@ section[title="onderwerpen selecteren"] ul li:nth-child(5)::after {
     body {
         display: block;
    }
+   section[title="onderwerpen selecteren"] {
+        align-self: center;
+  }
 }
 section[title="onderwerpen selecteren"] ul li:hover::before {
     background-color: #ff6c6c;
@@ -396,4 +410,221 @@ section[title="onderwerpen selecteren"] ul li:nth-child(5) button::before {
 
 section[title="onderwerpen selecteren"] ul li:hover > button::before {
     opacity: 1;
+}
+
+#test:target{
+    display:flex;
+}
+
+
+header button {
+  font-size: 1.2rem;
+  top: -3px;
+  left: 0;
+  display: flex;
+  transition: 0.5s;
+  border-radius: 10px;
+  border: 2px solid #f1c2c2;
+  padding: 10px 20px;
+  position: relative;
+  position: absolute;
+  margin-right: auto;
+}
+header button::after {
+  content: ' menu';
+  font-family: system-ui;
+  margin-left: 5px;
+  bottom: 1px;
+  position: relative;
+}
+header button:hover {
+  transform: scale(1.05);
+  transition: 0.5s;
+  background-color: #f1c2c2;
+  color: white;
+  text-shadow: 0px 0px 3px #a8a8a8;
+  /*! display: flex; */
+  /*! flex: 1 1 30%; */
+}
+
+section header h2 {
+  display: flex;
+  flex: 1 1 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+section::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: -60px;
+  left: -40px;
+  background-color: #ffb68142;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+section::after {
+  content: '';
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  right: -60px;
+  bottom: -180px;
+  z-index: 0;
+  border-radius: 50%;
+  background-color: #ffc6af59;
+}
+
+input#search {
+    display: flex;
+    /* flex: 1 0 70vw; */
+    margin-top: 20px;
+    flex: 50%;
+    border: none;
+    padding: 20px;
+    border: 2px solid #f0c2c2;
+    border-radius: 10px 0px 0px 10px;
+    z-index: 1;
+}
+
+input[type="submit"] {
+    height: auto;
+    background-color: white;
+    border: 0px;
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    z-index: 1;
+    background-color: #eec4c4;
+    border-radius: 0px 10px 10px 0px;
+    cursor: pointer;
+    color: white;
+    font-weight: 700;
+    /* flex: 0 0 10vw; */
+}
+
+@media screen and (max-width:500px){
+    header button{
+        position: relative;
+    }
+}
+
+section:nth-child(n+3) > ul>li {
+    flex: 1 1 20%;
+    text-align: center;
+    cursor: pointer;
+    height: 100px;
+    min-width: 160px;
+    transition: 0.5s;
+    background-color: white;
+    border-radius: 10px;
+    /*! box-shadow: 0px 0px 5px #c7c7c7; */
+    background: url(/src/img/audio.svg);
+    position: relative;
+}
+
+section:nth-child(n+3) > ul {
+    gap: 20px;
+    margin: 10px;
+}
+
+section[title="identiteit"] {
+    align-content: baseline;
+}
+
+section:nth-child(n+3) > ul>li button {
+    height: 100%;
+    width: 100%;
+    transition: 0.4s;
+    display: flex;
+    background-color: #ffebe3;
+    color: white;
+    text-shadow: 0 0 5px #a7a7a7;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+section:nth-child(n+3) > ul>li:hover {
+    background-color: red;
+    transition: 0.5s;
+}
+
+section:nth-child(n+3) > ul>li button:hover {
+    background-color: #eec4c4;
+    /* transition: 0.5s; */
+    color: white;
+    transform: scale(1.35);
+    text-shadow: 0 0 4px #0000006b;
+}
+
+
+input#search:focus {
+  border: 0px;
+  outline: 2px solid #f0c2c2;
+}
+
+
+section:nth-child(n+3) > ul > li:nth-child(1)::before {
+  background: url(/src/img/book.svg);
+  background-size: 120px;
+  background-repeat: no-repeat;
+  background-position-x: right;
+    z-index:1;
+  }
+
+section:nth-child(n+3) > ul > li:nth-child(2)::before {
+  background: url(/src/img/audio.svg);
+  background-size: 120px;
+  background-repeat: no-repeat;
+  background-position-x: right;
+    z-index:1;
+  }
+
+section:nth-child(n+3) > ul > li:nth-child(3)::before {
+  background: url(/src/img/video.svg);
+  background-size: 120px;
+  background-repeat: no-repeat;
+  background-position-x: right;
+    z-index:1;
+  }
+
+section:nth-child(n+3) > ul > li:nth-child(4)::before {
+  background: url(/src/img/activities.svg);
+  background-size: 120px;
+  background-repeat: no-repeat;
+  background-position-x: right;
+    z-index:1;
+  }
+
+
+section:nth-child(n+3) > ul > li::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: '';
+  top:10px;
+  right:10px;
+  z-index: 0;
+}
+
+
+section:nth-child(n+3) > ul > li:hover {
+  transition: 0.5s;
+  transform: scale(1.05);
+}
+section:nth-child(n+3) > ul > li:hover button {
+  background-color: #ffa581;
+}
+
+
+input[type="submit"]:hover {
+  transition: 0.5s;
+  margin: ;
+  padding: 0px 20px;
+  font-size: 1.2rem;
+  background-color: #ff6363;
 }
