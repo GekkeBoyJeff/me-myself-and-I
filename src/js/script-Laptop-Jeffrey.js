@@ -253,7 +253,7 @@ window.addEventListener('hashchange', async function(){
     detailscreen.style.setProperty('display', 'flex')
 
     document.querySelector(`section[title="detailscherm"] header h2`).innerHTML = `${data.record.titles[0]}`
-    document.querySelector(`section[title="detailscherm"] ul:first-of-type`).insertAdjacentHTML('beforeend', `<li><img src="${data.record.coverimages[1]}"></img></li><li><ul><li><p>${data.record.summaries[0]}</p></li><li><p>${data.record.authors[0]}<p></li></ul></li>`)
+    document.querySelector(`section[title="detailscherm"] ul:first-of-type`).insertAdjacentHTML('beforeend', `<li><img src="${data.record.coverimages[1]}"></img></li><li><p>${data.record.summaries[0]}</p></li>`)
 })
 
 // section data inladen
@@ -279,3 +279,16 @@ async function loadIdentity(){
         }
     }
 }
+
+// andereApiTest()
+
+// async function andereApiTest(){
+//         // URL 2 Data ophalen
+//         // Oh dit werkt dus wel
+//     query = `jezelf+leren+kennen`
+//     url = `${corsURL}${endpoint2}${query}${refine}&authorization=${pubKey}&output=json`
+    
+//     console.log(url)
+//     let data = await getData();
+//     console.log(data)
+// }
