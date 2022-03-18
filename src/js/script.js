@@ -279,3 +279,15 @@ async function loadIdentity(){
         }
     }
 }
+
+test()
+
+async function test(){
+        // URL 2 Data ophalen
+    query = `jezelf+leren+kennen`
+    url = `${corsURL}${endpoint2}${query}${refine}&authorization=${pubKey}&output=json`
+
+    
+    let data = await getData();
+    console.log(data)
+}
