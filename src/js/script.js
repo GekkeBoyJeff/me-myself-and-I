@@ -280,15 +280,15 @@ async function loadIdentity(){
     }
 }
 
-andereApiTest()
+// andereApiTest()
 
-async function andereApiTest(){
-        // URL 2 Data ophalen
-        // Oh dit werkt dus wel
-    query = `jezelf+leren+kennen`
-    url = `${corsURL}${endpoint2}${query}${refine}&authorization=${pubKey}&output=json`
+// async function andereApiTest(){
+//         // URL 2 Data ophalen
+//         // Oh dit werkt dus wel
+//     query = `jezelf+leren+kennen`
+//     url = `${corsURL}${endpoint2}${query}${refine}&authorization=${pubKey}&output=json`
     
-    console.log(url)
-    let data = await getData();
-    console.log(data)
-}
+//     console.log(url)
+//     let data = await getData();
+//     console.log(data)
+// }
