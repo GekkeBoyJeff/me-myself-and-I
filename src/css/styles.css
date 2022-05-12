@@ -341,20 +341,20 @@ section[title="onderwerpen selecteren"] ul li::before {
     transition: 0.5s;
 }
 section[title="onderwerpen selecteren"] ul li:first-child::after {
-    background-image: url(/src/img/fingerprint.svg);
+    background-image: url(../../src/img/fingerprint.svg);
 }
 section[title="onderwerpen selecteren"] ul li:nth-child(2)::after {
-    background-image: url(/src/img/goals.svg);
+    background-image: url(../../src/img/goals.svg);
 }
 section[title="onderwerpen selecteren"] ul li:nth-child(3)::after {
-    background-image: url(/src/img/marketing.svg);
+    background-image: url(../../src/img/marketing.svg);
 }
 section[title="onderwerpen selecteren"] ul li:nth-child(4)::after {
-    background-image: url(/src/img/calender.svg);
+    background-image: url(../../src/img/calender.svg);
     height: 90%;
 }
 section[title="onderwerpen selecteren"] ul li:nth-child(5)::after {
-    background-image: url(/src/img/mirror.svg);
+    background-image: url(../../src/img/mirror.svg);
     bottom: 10px;
 }
 @media screen and (max-width:400px){
